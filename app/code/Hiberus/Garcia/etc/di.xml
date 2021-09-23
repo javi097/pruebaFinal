@@ -16,4 +16,12 @@
     <type name="Hiberus\Garcia\Model\Examen">
         <plugin name="examen_plugin" type="Hiberus\Garcia\Plugin\Mark\MarkPlugin" sortOrder="10" />
     </type>
+    <!--   Comando Personalizado -->
+    <type name="Magento\Framework\Console\CommandListInterface">
+        <arguments>
+            <argument name="commands" xsi:type="array">
+                <item name="examen_comando" xsi:type="object">Hiberus\Garcia\Console\ExamenCommand</item>
+            </argument>
+        </arguments>
+    </type>
 </config>
