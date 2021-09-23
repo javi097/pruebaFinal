@@ -15,10 +15,28 @@ foreach($alumnos as $alumno) {
 
     ?>
     <ul>
-        <li>Nombre:<?= $alumno->getFirstName(); ?></li>
-        <li>Apellido: <?= $alumno->getLastName(); ?> </li>
-       <li>Nota:<?= $alumno->getMark(); ?></li>
-   </ul>
+        <li id="final">Nombre:<?= $alumno->getFirstName(); ?></li>
+        <li id="final">Apellido: <?= $alumno->getLastName(); ?> </li>
+        <?php
+        if($alumno->getMark() >=5){  ?>
+        <li id="aprobado">Nota:<?= $alumno->getMark(); ?></li>
+        <?php
+        }else{?>
+            <li id="suspenso">Nota:<?= $alumno->getMark(); ?></li>
+        <?php } ?>
+    </ul>
 
 <?php } ?>
-<p> Total de alumnos: <?= (count($alumnos)) ?> </p>
+<p id="cantidad"> Total de alumnos: <?= (count($alumnos)) ?> </p>
+<?php
+$notas=0;
+
+foreach($alumnos as $alumno) {
+    $notas+=$alumno->getMark();
+}
+$notasTotal= $notas/count($alumnos);
+?>
+<p id="cantidad"> Nota Media: <?= round($notasTotal,2) ?> </p>
+
+
+

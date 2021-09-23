@@ -12,4 +12,8 @@
     </argument>
 </arguments>
 </type>
+<!--   Plugin para los suspensos -->
+    <type name="Hiberus\Garcia\Model\Examen">
+        <plugin name="examen_plugin" type="Hiberus\Garcia\Plugin\Mark\MarkPlugin" sortOrder="10" />
+    </type>
 </config>

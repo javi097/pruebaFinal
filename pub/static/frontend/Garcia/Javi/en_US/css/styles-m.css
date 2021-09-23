@@ -12865,5 +12865,44 @@ button.braintree-googlepay-button.black.long,
   padding-left: 68px;
 }
 .title {
+  border: 1px solid black;
+  border-radius: 0.7rem;
   color: #0a6c9f;
+  text-align: center;
+  background-color: #9b9b9b;
+}
+#cantidad {
+  border: 1px solid black;
+  border-radius: 0.7rem;
+  text-align: center;
+  font-weight: bold;
+  color: #0a6c9f;
+  background-color: #9b9b9b;
+}
+#final {
+  border: 1px solid black;
+  border-radius: 0.7rem;
+  background-color: #f1f171;
+  color: black;
+  font-weight: bold;
+  text-align: center;
+}
+#final:nth-child(odd) {
+  margin-left: 20px;
+}
+#aprobado {
+  border: 1px solid black;
+  border-radius: 0.7rem;
+  background-color: lightgreen;
+  color: black;
+  font-weight: bold;
+  text-align: center;
+}
+#suspenso {
+  border: 1px solid black;
+  border-radius: 0.7rem;
+  background-color: #cb4040;
+  color: black;
+  font-weight: bold;
+  text-align: center;
 }
