@@ -1,6 +1,7 @@
 <?php
 
 namespace Hiberus\Garcia\Api\Data;
+use Magento\Framework\Api\ExtensibleDataInterface;
 
 interface ExamenInterface extends \Magento\Framework\Api\ExtensibleDataInterface
 {
@@ -42,12 +43,12 @@ interface ExamenInterface extends \Magento\Framework\Api\ExtensibleDataInterface
     public function setLastname($lastname);
 
     /**
-     * @return decimal
+     * @return float
      */
     public function getMark();
 
     /**
-     * @param decimal $mark
+     * @param float $mark
      * @return $this
      */
     public function setMark($mark);

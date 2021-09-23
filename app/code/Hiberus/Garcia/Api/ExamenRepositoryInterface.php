@@ -2,8 +2,10 @@
 
 namespace Hiberus\Garcia\Api;
 
+
 interface ExamenRepositoryInterface
 {
+
     /**
      * @param \Hiberus\Garcia\Api\Data\ExamenInterface $examenInterface
      * @return \Hiberus\Garcia\Api\Data\ExamenInterface
@@ -27,4 +29,5 @@ interface ExamenRepositoryInterface
      * @return bool
      */
     public function deleteById($idExam);
+
 }

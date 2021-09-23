@@ -6,16 +6,15 @@ use Hiberus\Garcia\Api\ExamenRepositoryInterface;
 use Hiberus\Garcia\Api\Data\ExamenInterface;
 use Magento\Framework\Exception\CouldNotSaveException;
 
-
 class ExamenRepository implements ExamenRepositoryInterface
 {
 
     protected ResourceModel\Examen $resourceExamen;
-    protected \Hiberus\Garcia\Api\Data\ExamenInterfaceFactory $examenInterfaceFactory;
+    protected ExamenRepositoryInterface $examenRepository;
 
     /**
      * @param ResourceModel\Examen $resourceExamen
-     * @param \Hiberus\Garcia\Api\Data\ExamenInterfaceFactory $examenInterfaceFactory
+     * @param ExamenRepositoryInterface $examenRepository
      */
     public function __construct(
         \Hiberus\Garcia\Model\ResourceModel\Examen $resourceExamen,
@@ -30,9 +29,7 @@ class ExamenRepository implements ExamenRepositoryInterface
      * @return ExamenInterface
      * @throws CouldNotSaveException
      */
-    public function save(
-        ExamenInterface $examen
-    ) {
+    public function save(ExamenInterface $examen) {
 
         try {
             $this->resourceExamen->save($examen);
@@ -52,7 +49,7 @@ class ExamenRepository implements ExamenRepositoryInterface
     {
         try {
             $examen = $this->examenInterfaceFactory->create();
-            $examen->setEntityId($idExam);
+            $examen->setIdExam($idExam);
             $this->resourceExamen->load($examen, $idExam);
         } catch (\Exception $e) {
             $examen = $this->examenInterfaceFactory->create();
@@ -62,10 +59,10 @@ class ExamenRepository implements ExamenRepositoryInterface
     }
 
     /**
-     * @param \Hiberus\Garcia\Api\Data\ExamenInterface $examen
+     * @param ExamenInterface $examen
      * @return bool
      */
-    public function delete(\Hiberus\Garcia\Api\Data\ExamenInterface $examen)
+    public function delete(ExamenInterface $examen)
     {
         try {
             $this->resourceExamen->delete($examen);
@@ -85,4 +82,5 @@ class ExamenRepository implements ExamenRepositoryInterface
     {
         return $this->delete($this->getById($idExam));
     }
+
 }

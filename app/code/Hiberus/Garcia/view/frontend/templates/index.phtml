@@ -1,0 +1,24 @@
+<?php
+
+/**
+ * @var \Hiberus\Garcia\Block\Index $block
+ */
+$alumnos = $block->getAlumno();
+
+?>
+
+<h2 class="title">Prueba</h2>
+
+<?php
+
+foreach($alumnos as $alumno) {
+
+    ?>
+    <ul>
+        <li>Nombre:<?= $alumno->getFirstName(); ?></li>
+        <li>Apellido: <?= $alumno->getLastName(); ?> </li>
+       <li>Nota:<?= $alumno->getMark(); ?></li>
+   </ul>
+
+<?php } ?>
+<p> Total de alumnos: <?= (count($alumnos)) ?> </p>

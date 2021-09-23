@@ -2,7 +2,6 @@
 
 namespace Hiberus\Garcia\Model;
 
-use Hiberus\Garcia\Api\Data\decimal;
 use Hiberus\Garcia\Api\Data\ExamenInterface;
 use Magento\Framework\Model\AbstractModel;
 
