@@ -618,8 +618,9 @@ require.config(config);
 var config = {
     map: {
         '*': {
-            transparent: 'Magento_Payment/js/transparent',
-            'Magento_Payment/transparent': 'Magento_Payment/js/transparent'
+            orderReview: 'Magento_Paypal/js/order-review',
+            'Magento_Paypal/order-review': 'Magento_Paypal/js/order-review',
+            paypalCheckout: 'Magento_Paypal/js/paypal-checkout'
         }
     }
 };
@@ -635,9 +636,8 @@ require.config(config);
 var config = {
     map: {
         '*': {
-            orderReview: 'Magento_Paypal/js/order-review',
-            'Magento_Paypal/order-review': 'Magento_Paypal/js/order-review',
-            paypalCheckout: 'Magento_Paypal/js/paypal-checkout'
+            transparent: 'Magento_Payment/js/transparent',
+            'Magento_Payment/transparent': 'Magento_Payment/js/transparent'
         }
     }
 };
@@ -907,6 +907,17 @@ var config = {
 require.config(config);
 })();
 (function() {
+var config = {
+    map: {
+        '*': {
+            mostrarLista: 'Hiberus_Garcia/js/mostrarLista',
+            notaAlta: 'Hiberus_Garcia/js/notaAlta',
+        }
+    }
+};
+require.config(config);
+})();
+(function() {
 /**
  * This file is part of the Klarna Onsitemessaging module
  *
@@ -954,24 +965,6 @@ var config = {
 require.config(config);
 })();
 (function() {
-var config = {
-    config: {
-        mixins: {
-            'Magento_Checkout/js/model/step-navigator': {
-                'PayPal_Braintree/js/model/step-navigator-mixin': true
-            }
-        }
-    },
-    map: {
-        '*': {
-            braintreeCheckoutPayPalAdapter: 'PayPal_Braintree/js/view/payment/adapter'
-        }
-    },
-};
-
-require.config(config);
-})();
-(function() {
 /**
  * Config to pull in all the relevant Braintree JS SDKs
  * @type {{paths: {braintreePayPalCheckout: string, braintreeHostedFields: string, braintreeDataCollector: string, braintreeThreeDSecure: string, braintreeGooglePay: string, braintreeApplePay: string, googlePayLibrary: string}, map: {"*": {braintree: string}}}}
@@ -995,6 +988,24 @@ var config = {
         "braintreeLpm": "https://js.braintreegateway.com/web/3.51.0/js/local-payment.min",
         "googlePayLibrary": "https://pay.google.com/gp/p/js/pay"
     }
+};
+
+require.config(config);
+})();
+(function() {
+var config = {
+    config: {
+        mixins: {
+            'Magento_Checkout/js/model/step-navigator': {
+                'PayPal_Braintree/js/model/step-navigator-mixin': true
+            }
+        }
+    },
+    map: {
+        '*': {
+            braintreeCheckoutPayPalAdapter: 'PayPal_Braintree/js/view/payment/adapter'
+        }
+    },
 };
 
 require.config(config);

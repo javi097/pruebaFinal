@@ -13,7 +13,10 @@ $i=0;
 ?>
 
 <h2 class="title">Prueba</h2>
+<button id="mostrar">Mostrar lista</button>
+<button id="notaAlta">Nota mas alta</button>
 
+<div id="lista">
 <?php
 
 foreach ($alumnos as $alumno) {
@@ -33,6 +36,7 @@ foreach ($alumnos as $alumno) {
     </ul>
 
 <?php } ?>
+</div>
 <p id="cantidad"> Total de alumnos: <?= (count($alumnos)) ?> </p>
 
 <p id="cantidad"> Nota Media: <?= round($notasTotal, 2) ?> </p>
@@ -66,6 +70,20 @@ foreach ($alumnos as $alumno) {
     ?>
 
 </ul>
+<script>
+    var maxNote = <?= $block->getNotaMasAlta() ?>
+</script>
+
+<script>
+    require(['jquery', 'mostrarLista'], function($, mostrarLista) {
+        mostrarLista('#mostrar','#lista');
+    });
+
+    require(['jquery', 'notaAlta'], function($, alertNotaAlta) {
+        alertNotaAlta('#notaAlta');
+    });
+</script>
+
 
 
 

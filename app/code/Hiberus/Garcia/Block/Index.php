@@ -90,6 +90,17 @@ class Index extends \Magento\Framework\View\Element\Template
         return $notasMaximas;
     }
 
+    public function getNotaMasAlta() {
+        $alumnos = $this->examenInterfaceFactory->create()->getCollection()->getData();
+        $notaMaxima = 0;
+        foreach ($alumnos as $alumno) {
+            if ($alumno['mark'] > $notaMaxima) {
+                $notaMaxima = $alumno['mark'];
+            }
+        }
+        return $notaMaxima;
+    }
+
     public function getRegistros()
     {
         $data = $this->scopeConfig->getValue('hiberus_nombre/general/registros', ScopeInterface::SCOPE_STORE);
