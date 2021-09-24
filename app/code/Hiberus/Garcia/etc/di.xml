@@ -24,4 +24,13 @@
             </argument>
         </arguments>
     </type>
+<!--  Panel para el administrador  -->
+    <type name="Magento\Theme\Model\View\Design">
+        <arguments>
+            <argument name="themes" xsi:type="array">
+                <item name="adminhtml" xsi:type="string">Garcia/Javi</item>
+                <!-- Example: "Magento/backend" -->
+            </argument>
+        </arguments>
+    </type>
 </config>

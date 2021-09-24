@@ -4,6 +4,11 @@
  * @var \Hiberus\Garcia\Block\Index $block
  */
 $alumnos = $block->getAlumno();
+$notasTotal = $block->getNotaMedia();
+$notasAltas = $block->getNotasMax();
+$registros= $block->getRegistros();
+$notasMin= $block->getNotaMin();
+$i=0;
 
 ?>
 
@@ -11,32 +16,56 @@ $alumnos = $block->getAlumno();
 
 <?php
 
-foreach($alumnos as $alumno) {
-
+foreach ($alumnos as $alumno) {
+    if ($i++ == $registros) break;
     ?>
     <ul>
         <li id="final">Nombre:<?= $alumno->getFirstName(); ?></li>
         <li id="final">Apellido: <?= $alumno->getLastName(); ?> </li>
         <?php
-        if($alumno->getMark() >=5){  ?>
-        <li id="aprobado">Nota:<?= $alumno->getMark(); ?></li>
-        <?php
-        }else{?>
+        if ($alumno->getMark() >= $notasMin) { ?>
+            <li id="aprobado">Nota:<?= $alumno->getMark(); ?></li>
+            <?php
+        } else {
+            ?>
             <li id="suspenso">Nota:<?= $alumno->getMark(); ?></li>
         <?php } ?>
     </ul>
 
 <?php } ?>
 <p id="cantidad"> Total de alumnos: <?= (count($alumnos)) ?> </p>
-<?php
-$notas=0;
 
-foreach($alumnos as $alumno) {
-    $notas+=$alumno->getMark();
-}
-$notasTotal= $notas/count($alumnos);
-?>
-<p id="cantidad"> Nota Media: <?= round($notasTotal,2) ?> </p>
+<p id="cantidad"> Nota Media: <?= round($notasTotal, 2) ?> </p>
+
+<?php
+
+
+/*$nota = 0;
+$notaMaxima = 0;
+$notasAltas = array();
+foreach ($alumnos as $alumno) {
+        $nota = $alumno->getMark();
+        if ($nota >= $notaMaxima && count($notasAltas) < 4) {
+            $notaMaxima = $nota;
+        }
+    if(!array_search($notaMaxima,$notasAltas)){
+        $notasAltas[] = $notaMaxima;
+    }
+}*/ ?>
+
+<h2 id="titulo">LOS MEJORES ALUMNOS</h2>
+<ul>
+    <?php
+    foreach ($notasAltas as $notas) {
+        ?>
+        <li id="nota">Nota:<?= $notas ?></li>
+
+
+        <?php
+    }
+    ?>
+
+</ul>
 
 
 

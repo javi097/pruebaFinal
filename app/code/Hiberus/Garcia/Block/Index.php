@@ -8,6 +8,8 @@ use Hiberus\Garcia\Model\Examen;
 use Hiberus\Garcia\Api\Data\ExamenInterfaceFactory;
 use \Magento\Framework\View\Element\Template\Context;
 use \Magento\Framework\Registry;
+use Magento\Store\Model\ScopeInterface;
+use Magento\Framework\App\Config\ScopeConfigInterface;
 
 class Index extends \Magento\Framework\View\Element\Template
 {
@@ -31,9 +33,11 @@ class Index extends \Magento\Framework\View\Element\Template
      ExamenRepositoryInterface $examenRepository,
      ExamenInterfaceFactory    $examenInterfaceFactory,
      ResourceExamen            $examenResource,
+     ScopeConfigInterface $scopeConfig,
      array                     $data = []
     )
     {
+        $this->scopeConfig = $scopeConfig;
         $this->registry = $registry;
         $this->examen = $examen;
         $this->examenRepository = $examenRepository;
@@ -42,6 +46,7 @@ class Index extends \Magento\Framework\View\Element\Template
         parent::__construct($context, $data);
     }
 
+//  Metodo para obtener todos los datos del alumno
     public function getAlumno()
     {
 
@@ -51,5 +56,51 @@ class Index extends \Magento\Framework\View\Element\Template
 
     }
 
+    //Metodo para obtener la nota media de todos los alumnos
+    public function getNotaMedia()
+    {
+        $notas = 0;
+        $alumnos = $this->getAlumno();
+        foreach ($alumnos as $alumno) {
+            $notas += $alumno->getMark();
+        }
+        return $notasTotal = $notas / count($alumnos);
+
+    }
+
+    //Metodo par obtener las tres mejores notas de todos los alumnos
+    public function getNotasMax()
+    {
+        $totalAlumnos = $this->getAlumno();
+        $notas = [];
+        $notasMaximas = [];
+        $notaMax = 0;
+        foreach ($totalAlumnos as $item) {
+            $notas[] = $item->getMark();
+        }
+        $max = max($notas);
+        foreach ($notas as $nota) {
+            $notaGeneral = $nota;
+            if ($notaGeneral <= $max && count($notasMaximas) < 3) {
+                $notaMax = $notaGeneral;
+                $notasMaximas[] = $notaMax;
+            }
+        }
+
+        return $notasMaximas;
+    }
+
+    public function getRegistros()
+    {
+        $data = $this->scopeConfig->getValue('hiberus_nombre/general/registros', ScopeInterface::SCOPE_STORE);
+        $alumnos = $this->getAlumno();
+        return $data ?: count($alumnos);
+    }
+
+    public function getNotaMin()
+    {
+        $data = $this->scopeConfig->getValue('hiberus_nombre/general/notaMin', ScopeInterface::SCOPE_STORE);
+        return $data ?: 5;
+    }
 
 }
